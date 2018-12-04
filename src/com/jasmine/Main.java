@@ -1,5 +1,8 @@
 package com.jasmine;
 
+import com.jasmine.享元模式.PieceFactory;
+import com.jasmine.代理模式.Proxy;
+import com.jasmine.代理模式.Single;
 import com.jasmine.外观模式.Mainframe;
 import com.jasmine.桥接模式.Abstraction;
 import com.jasmine.桥接模式.BusImple;
@@ -66,4 +69,18 @@ public class Main {
        adapter.yeal();
 
     }//适配器模式
+    @Test
+    public void Flyweight(){
+        PieceFactory pieceFactory = new PieceFactory();
+        pieceFactory.getPiece("white").getType();
+        pieceFactory.getPiece("white").getType();
+        pieceFactory.getPiece("black").getType();
+        pieceFactory.getPiece("black").getType();
+    }//享元模式
+    @Test
+    public void Proxy(){
+        Single single = new Single(12);
+        Proxy proxy = new Proxy(single);
+        proxy.findTarget();
+    }
 }
