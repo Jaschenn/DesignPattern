@@ -11,6 +11,10 @@ import com.jasmine.桥接模式.Road1;
 import com.jasmine.组合模式.AbstractFile;
 import com.jasmine.组合模式.File;
 import com.jasmine.组合模式.Floder;
+import com.jasmine.职责链模式_3.Director;
+import com.jasmine.职责链模式_3.GeneralManager;
+import com.jasmine.职责链模式_3.Manager;
+import com.jasmine.职责链模式_3.ViceGeneralManager;
 import com.jasmine.装饰模式.ComplexPhone;
 import com.jasmine.装饰模式.JarPhone;
 import com.jasmine.装饰模式.Phone;
@@ -82,5 +86,20 @@ public class Main {
         Single single = new Single(12);
         Proxy proxy = new Proxy(single);
         proxy.findTarget();
-    }
+    }//代理模式
+    @Test
+    public void ResponsibilityChain(){
+        Director director = new Director();
+        Manager manager = new Manager();
+        ViceGeneralManager viceGeneralManager = new ViceGeneralManager();
+        GeneralManager generalManager = new GeneralManager();
+        director.setSuccessor(manager);
+        manager.setSuccessor(viceGeneralManager);
+        viceGeneralManager.setSuccessor(generalManager);
+        director.handleRequest(0);
+        director.handleRequest(3);
+        director.handleRequest(8);
+        director.handleRequest(12);
+        director.handleRequest(88);
+    }//职责链模式
 }
