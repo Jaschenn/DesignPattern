@@ -19,11 +19,17 @@ import com.jasmine.装饰模式.ComplexPhone;
 import com.jasmine.装饰模式.JarPhone;
 import com.jasmine.装饰模式.Phone;
 import com.jasmine.装饰模式.SimplePhone;
+import com.jasmine.迭代器模式.Student;
+import com.jasmine.迭代器模式.StudentIterator;
+import com.jasmine.迭代器模式.Students;
 import com.jasmine.适配器模式.Adapter;
 import com.jasmine.适配器模式.Cat;
-import com.jasmine.适配器模式.CatAdapter;
 import com.jasmine.适配器模式.Dog;
 import org.junit.Test;
+
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 
 public class Main {
 
@@ -102,4 +108,23 @@ public class Main {
         director.handleRequest(12);
         director.handleRequest(88);
     }//职责链模式
+    @Test
+    public void IteratorPattern(){
+        Student student1 = new Student();
+        student1.setNo(1);
+        student1.setName("ll");
+        Student student2 = new Student();
+        student2.setNo(2);
+        student2.setName("ss");
+        Students students = new Students();
+        students.addStudent(student1);
+        students.addStudent(student2);
+        StudentIterator iterator = students.getIterator();
+        List list = (List) iterator.getByOrder(false);//true 为升序，false为降序
+        for (Object s :
+                list) {
+            System.out.println(((Student)s).getNo());
+        }
+
+    }//迭代器模式
 }

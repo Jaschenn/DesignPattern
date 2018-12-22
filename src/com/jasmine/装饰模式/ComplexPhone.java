@@ -17,4 +17,5 @@ public class ComplexPhone extends Decorator {
     public void flash(){
         System.out.println("发光！");
     }
+
 }
