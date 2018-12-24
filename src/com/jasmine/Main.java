@@ -1,5 +1,8 @@
 package com.jasmine;
 
+import com.jasmine.中介者模式.AbstractChatroom;
+import com.jasmine.中介者模式.ChatGroupV2;
+import com.jasmine.中介者模式.PlasticMember;
 import com.jasmine.享元模式.PieceFactory;
 import com.jasmine.代理模式.Proxy;
 import com.jasmine.代理模式.Single;
@@ -127,4 +130,18 @@ public class Main {
         }
 
     }//迭代器模式
+    @Test
+    public void Mediator(){
+        AbstractChatroom chatroom = new ChatGroupV2();
+        PlasticMember plasticMember1 = new PlasticMember("塑料一号");
+        PlasticMember plasticMember2 = new PlasticMember("塑料二号");
+        PlasticMember plasticMember3 = new PlasticMember("塑料三号");
+        plasticMember1.setChatroom(chatroom);
+        chatroom.register(plasticMember1);
+        chatroom.register(plasticMember2);
+        chatroom.register(plasticMember3);
+        plasticMember2.setChatroom(chatroom);
+        plasticMember3.setChatroom(chatroom);
+        plasticMember1.sendTextWithTime("塑料二号","hello !","2018-01-01");
+    }
 }
