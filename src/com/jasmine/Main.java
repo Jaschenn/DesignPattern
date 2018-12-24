@@ -6,6 +6,8 @@ import com.jasmine.中介者模式.PlasticMember;
 import com.jasmine.享元模式.PieceFactory;
 import com.jasmine.代理模式.Proxy;
 import com.jasmine.代理模式.Single;
+import com.jasmine.备忘录模式.Caretaker;
+import com.jasmine.备忘录模式.UserInfoDTO;
 import com.jasmine.外观模式.Mainframe;
 import com.jasmine.桥接模式.Abstraction;
 import com.jasmine.桥接模式.BusImple;
@@ -143,5 +145,30 @@ public class Main {
         plasticMember2.setChatroom(chatroom);
         plasticMember3.setChatroom(chatroom);
         plasticMember1.sendTextWithTime("塑料二号","hello !","2018-01-01");
+    }
+    @Test
+    public void Memento(){
+
+        UserInfoDTO user=new UserInfoDTO();
+        Caretaker c=new Caretaker();
+
+        user.setAccount("zhangsan");
+        user.setPassword("123456");
+        user.setTelNo("13000000000");
+        System.out.println("状态一：");
+        user.show();
+        c.setMemento(user.saveMemento());//保存备忘录
+        System.out.println("---------------------------");
+
+        user.setPassword("111111");
+        user.setTelNo("13100001111");
+        System.out.println("状态二：");
+        user.show();
+        System.out.println("---------------------------");
+
+        user.restoreMemento(c.getMemento());//从备忘录中恢复
+        System.out.println("回到状态一：");
+        user.show();
+        System.out.println("---------------------------");
     }
 }
