@@ -24,6 +24,8 @@ import com.jasmine.装饰模式.ComplexPhone;
 import com.jasmine.装饰模式.JarPhone;
 import com.jasmine.装饰模式.Phone;
 import com.jasmine.装饰模式.SimplePhone;
+import com.jasmine.观察者模式.Shareholder;
+import com.jasmine.观察者模式.Stocks;
 import com.jasmine.迭代器模式.Student;
 import com.jasmine.迭代器模式.StudentIterator;
 import com.jasmine.迭代器模式.Students;
@@ -145,7 +147,7 @@ public class Main {
         plasticMember2.setChatroom(chatroom);
         plasticMember3.setChatroom(chatroom);
         plasticMember1.sendTextWithTime("塑料二号","hello !","2018-01-01");
-    }
+    }//中介者模式
     @Test
     public void Memento(){
 
@@ -164,11 +166,27 @@ public class Main {
         user.setTelNo("13100001111");
         System.out.println("状态二：");
         user.show();
+        c.setMemento(user.saveMemento());//保存备忘录
         System.out.println("---------------------------");
 
-        user.restoreMemento(c.getMemento());//从备忘录中恢复
+        user.restoreMemento(c.getMemento(0));//从备忘录中恢复
         System.out.println("回到状态一：");
         user.show();
         System.out.println("---------------------------");
+
+        user.restoreMemento(c.getMemento(1));//从备忘录中恢复
+        System.out.println("回到状态二：");
+        user.show();
+        System.out.println("---------------------------");
+    }//备忘录模式
+    @Test
+    public void Observer(){
+        Shareholder shareholder1 = new Shareholder("黎明");
+        Shareholder shareholder2 = new Shareholder("王妲");
+        Stocks stocks = new Stocks();
+        stocks.attach(shareholder1);
+        stocks.attach(shareholder2);
+        stocks.setCurrentPrice(-1);
+        stocks.setCurrentPrice(99);
     }
 }
