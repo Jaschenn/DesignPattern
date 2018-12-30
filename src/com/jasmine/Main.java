@@ -13,6 +13,13 @@ import com.jasmine.桥接模式.Abstraction;
 import com.jasmine.桥接模式.BusImple;
 import com.jasmine.桥接模式.Implementor;
 import com.jasmine.桥接模式.Road1;
+import com.jasmine.模版方法模式.AbstractDBUtil;
+import com.jasmine.模版方法模式.OracleDBUtil;
+import com.jasmine.状态模式.Account;
+import com.jasmine.状态模式.DisabledState;
+import com.jasmine.状态模式.NormalState;
+import com.jasmine.策略模式.Bike;
+import com.jasmine.策略模式.Context;
 import com.jasmine.组合模式.AbstractFile;
 import com.jasmine.组合模式.File;
 import com.jasmine.组合模式.Floder;
@@ -26,6 +33,7 @@ import com.jasmine.装饰模式.Phone;
 import com.jasmine.装饰模式.SimplePhone;
 import com.jasmine.观察者模式.Shareholder;
 import com.jasmine.观察者模式.Stocks;
+import com.jasmine.访问者模式.*;
 import com.jasmine.迭代器模式.Student;
 import com.jasmine.迭代器模式.StudentIterator;
 import com.jasmine.迭代器模式.Students;
@@ -188,5 +196,47 @@ public class Main {
         stocks.attach(shareholder2);
         stocks.setCurrentPrice(-1);
         stocks.setCurrentPrice(99);
-    }
+    }//**观察者模式**
+    @Test
+    public void State(){
+        NormalState normalState = new NormalState();
+        DisabledState disabledState =  new DisabledState();
+        Account account = new Account(disabledState,"黎明");
+        account.withdrwa(1);
+        account.withdrwa(1);
+        account.setAccountState(normalState);
+        account.withdrwa(10);
+        account.deposit(100);
+    }//状态模式
+    @Test
+    public void Strategy(){
+        Context context = new Context();
+        Bike bike = new Bike();
+        context.setAbstractWay(bike);
+        context.play();
+    }//策略模式
+    @Test
+    public void Template(){
+        AbstractDBUtil dbUtil = new OracleDBUtil();
+        dbUtil.connDB();
+        dbUtil.closeDB();
+    }//模版方法模式
+    @Test
+    public void Visitor(){
+        Product b1=new Book();
+        Product b2=new Book();
+        Product a1=new Apple();
+        Visitor visitor;
+
+        BuyBasket basket=new BuyBasket();
+        basket.addProduct(b1);
+        basket.addProduct(b2);
+        basket.addProduct(a1);
+
+        //visitor=(Visitor)XMLUtil.getBean();
+        visitor = new Packer();
+        visitor.setName("Packer");
+
+        basket.accept(visitor);
+    }//访问者模式
 }
