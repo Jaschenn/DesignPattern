@@ -1,0 +1,4 @@
+# DesignPattern
+设计模式的demo
+包含了常见的结构型模式和行为型模式
+每个模式对应着一个package，client都在main.java中
